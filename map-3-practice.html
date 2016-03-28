@@ -12,9 +12,6 @@
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="http://code.highcharts.com/maps/highmaps.js"></script>
   <script src="http://code.highcharts.com/maps/modules/map.js"></script>
-  <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
-<script src="https://www.amcharts.com/lib/3/maps/js/usaLow.js"></script>
-<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
 
 
@@ -202,182 +199,71 @@ function buildChart1(){
 }
 
   //chart 3 beings
-  var map = AmCharts.makeChart( "chartdiv", {
-    type: "map",
-    "theme": "light",
+  $(function buildChart3(){
 
-    colorSteps: 10,
+      $.getJSON('gunowners.json', function (data) {
 
-    dataProvider: {
-      map: "usaLow",
-      areas: [ {
-        id: "US-AL",
-        value: 20
-      }, {
-        id: "US-AK",
-        value: 15.2
-      }, {
-        id: "US-AZ",
-        value: 9.4
-      }, {
-        id: "US-AR",
-        value: 41.6
-      }, {
-        id: "US-CA",
-        value: 7.6
-      }, {
-        id: "US-CO",
-        value: 12
-      }, {
-        id: "US-CT",
-        value: 11.3
-      }, {
-        id: "US-DE",
-        value: 4.2
-      }, {
-        id: "US-FL",
-        value: 10.2
-      }, {
-        id: "US-GA",
-        value: 14.6
-      }, {
-        id: "US-HI",
-        value: 5.1
-      }, {
-        id: "US-ID",
-        value: 24.2
-      }, {
-        id: "US-IL",
-        value: 9.2
-      }, {
-        id: "US-IN",
-        value: 14.1
-      }, {
-        id: "US-IA",
-        value: 6.1
-      }, {
-        id: "US-KS",
-        value: 11
-      }, {
-        id: "US-KY",
-        value: 13.5
-      }, {
-        id: "US-LA",
-        value: 15.1
-      }, {
-        id: "US-ME",
-        value: 9.5
-      }, {
-        id: "US-MD",
-        value: 15
-      }, {
-        id: "US-MA",
-        value: 4.9
-      }, {
-        id: "US-MI",
-        value: 4.3
-      }, {
-        id: "US-MN",
-        value: 11.3
-      }, {
-        id: "US-MS",
-        value: 6.8
-      }, {
-        id: "US-MO",
-        value: 8.5
-      }, {
-        id: "US-MT",
-        value: 11.3
-      }, {
-        id: "US-NE",
-        value: 7.4
-      }, {
-        id: "US-NV",
-        value: 19.5
-      }, {
-        id: "US-NH",
-        value: 14.6
-      }, {
-        id: "US-NJ",
-        value: 5.8
-      }, {
-        id: "US-NM",
-        value: 40.5
-      }, {
-        id: "US-NY",
-        value: 3.3
-      }, {
-        id: "US-NC",
-        value: 11.1
-      }, {
-        id: "US-ND",
-        value: 9.5
-      }, {
-        id: "US-OH",
-        value: 11.4
-      }, {
-        id: "US-OK",
-        value: 12.3
-      }, {
-        id: "US-OR",
-        value: 11.4
-      }, {
-        id: "US-PA",
-        value: 15
-      }, {
-        id: "US-RI",
-        value: 3.8
-      }, {
-        id: "US-SC",
-        value: 11.6
-      }, {
-        id: "US-SD",
-        value: 11.5
-      }, {
-        id: "US-TN",
-        value: 11.3
-      }, {
-        id: "US-TX",
-        value: 12.8
-      }, {
-        id: "US-UT",
-        value: 12.9
-      }, {
-        id: "US-VT",
-        value: 6.4
-      }, {
-        id: "US-VA",
-        value: 30.1
-      }, {
-        id: "US-WA",
-        value: 8.6
-      }, {
-        id: "US-WV",
-        value: 9.4
-      }, {
-        id: "US-WI",
-        value: 7.8
-      }, {
-        id: "US-WY",
-        value: 195.7
-      } ]
-    },
+          // Make codes uppercase to match the map data
+          $.each(data, function () {
+              this.code = this.code.toUpperCase();
+          });
 
-    areasSettings: {
-      autoZoom: true
-    },
+          // Instanciate the map
+          $('#container').highcharts('Map', {
 
-    valueLegend: {
-      right: 3,
-      minValue: "few",
-      maxValue: "a lot"
-    },
+              chart : {
+                  borderWidth : 1
+              },
 
-    "export": {
-      "enabled": true
-    }
+              title : {
+                  text : 'US population density (/km²)'
+              },
 
-  } );
+              legend: {
+                  layout: 'horizontal',
+                  borderWidth: 0,
+                  backgroundColor: 'rgba(255,255,255,0.85)',
+                  floating: true,
+                  verticalAlign: 'top',
+                  y: 25
+              },
+
+              mapNavigation: {
+                  enabled: true
+              },
+
+              colorAxis: {
+                  min: 1,
+                  type: 'logarithmic',
+                  minColor: '#EEEEFF',
+                  maxColor: '#000022',
+                  stops: [
+                      [0, '#EFEFFF'],
+                      [0.67, '#4444FF'],
+                      [1, '#000022']
+                  ]
+              },
+
+              series : [{
+                  animation: {
+                      duration: 1000
+                  },
+                  data : data,
+                  mapData: Highcharts.maps['countries/us/us-all'],
+                  joinBy: ['postal-code', 'code'],
+                  dataLabels: {
+                      enabled: true,
+                      color: '#FFFFFF',
+                      format: '{point.code}'
+                  },
+                  name: 'Population density',
+                  tooltip: {
+                      pointFormat: '{point.code}: {point.value}/km²'
+                  }
+              }]
+          });
+      });
+  });
 
   //chart 4 beings
 

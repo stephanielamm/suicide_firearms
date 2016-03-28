@@ -10,22 +10,20 @@
   <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
-  <script src="http://code.highcharts.com/maps/highmaps.js"></script>
   <script src="http://code.highcharts.com/maps/modules/map.js"></script>
 
 
 
   <div id="chart1" style="min-width: 310px; max-width: 800px; height: 400px; margin: 20px auto"></div>
   <div id="chart2" style="min-width: 310px; max-width: 800px; height: 400px; margin: 20px;"></div>
-  <div id="chartdiv" style= "width: 100%;
-	height: 500px;"></div>
+  <div id="chart3" style= "width: 100%; height: 500px;"></div>
 
 <script>
 // A $( document ).ready() block.
 $( document ).ready(function() {
     buildChart1();
     buildChart2();
-    buildChart3();
+//    buildChart3();
 
 });
 
@@ -199,9 +197,8 @@ function buildChart1(){
 }
 
   //chart 3 beings
-  $(function buildChart3(){
-
-      $.getJSON('gunowners.json', function (data) {
+  $(function (){
+      $.getJSON('http://localhost:8000/gunowners.json', function (data) {
 
           // Make codes uppercase to match the map data
           $.each(data, function () {
@@ -209,14 +206,14 @@ function buildChart1(){
           });
 
           // Instanciate the map
-          $('#container').highcharts('Map', {
+          $('#chart3').highcharts('Map', {
 
               chart : {
                   borderWidth : 1
               },
 
               title : {
-                  text : 'US population density (/km²)'
+                  text : 'Gun owners per 1,000 people'
               },
 
               legend: {
@@ -256,7 +253,7 @@ function buildChart1(){
                       color: '#FFFFFF',
                       format: '{point.code}'
                   },
-                  name: 'Population density',
+                  name: 'Gun owners per 1,000 people',
                   tooltip: {
                       pointFormat: '{point.code}: {point.value}/km²'
                   }

@@ -19,11 +19,6 @@
   <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
-  <script src="http://code.highcharts.com/maps/highmaps.js"></script>
-  <script src="http://code.highcharts.com/maps/modules/map.js"></script>
-  <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
-<script src="https://www.amcharts.com/lib/3/maps/js/usaLow.js"></script>
-<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
 
 
@@ -31,17 +26,16 @@
   <div id="chart2" style="min-width: 310px; max-width: 800px; height: 400px; margin: 20px;"></div>
 
 
-  <div id="chartdiv" style= "width: 50%;
-	height: 500px; float: left;"></div>
-
-  <div id="chartdiv2" style= "width: 50%;
-	height: 500px; float: right;"></div>
+<div id="chart3" style="min-width: 310px; height:600px; max-width: 800px; margin: 0 auto"></div>
+<div id="chart4" style="min-width: 310px; height:600px; max-width: 800px; margin: 0 auto"></div>
 
 <script>
 // A $( document ).ready() block.
 $( document ).ready(function() {
     buildChart1();
     buildChart2();
+    buildChart3();
+    buildChart4();
 });
 
 //chart 1 begins
@@ -216,379 +210,351 @@ function buildChart1(){
 
 
 
-  //chart 3 beings
-  var map = AmCharts.makeChart( "chartdiv", {
-    type: "map",
-    "theme": "light",
-    "titles": [{
-        "text": "Gun Ownership"
-    }, {
-        "text": "Source: U.S. Census 2013",
-        "bold": false
-    }],
+function buildChart3(){
+    $('#chart3').highcharts({
+        chart: {
+            type: 'scatter',
+            zoomType: 'xy'
+        },
+        title: {
+            text: 'State Suicide Rates by Gun Ownership'
+        },
+        subtitle: {
+            text: 'Source: 2013 CDC Fatal Injury Report, U.S. Census 2013'
+        },
+        xAxis: {
+            title: {
+                enabled: true,
+                text: 'Guns per 1,000 residents'
+            },
+            startOnTick: true,
+            endOnTick: true,
+            showLastLabel: true
+        },
+        yAxis: {
+            title: {
+                text: 'Suicide Rate'
+            }
+        },
+        legend: {
 
-    colorSteps: 400,
+        },
+        plotOptions: {
+            scatter: {
+                marker: {
+                    radius: 5,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            lineColor: 'rgb(100,100,100)'
+                        }
+                    }
+                },
+                states: {
+                    hover: {
+                        marker: {
+                            enabled: false
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: '{point.x} guns/1,000 people, {point.y} % of all suicides'
+                }
+            }
+        },
+        series: [
+       {
+            name: 'West Virginia',
+            color: 'rgba(119, 152, 191, .5)',
+            data: [[7.8, 9.7]]
+        },
+        {
+            name: 'Wisconsin',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[9.4, 5.7]]
 
-    dataProvider: {
-      map: "usaLow",
-      areas: [ {
-        id: "US-AL",
-        value: 20
-      }, {
-        id: "US-AK",
-        value: 15.2
-      }, {
-        id: "US-AZ",
-        value: 9.4
-      }, {
-        id: "US-AR",
-        value: 41.6
-      }, {
-        id: "US-CA",
-        value: 7.6
-      }, {
-        id: "US-CO",
-        value: 12
-      }, {
-        id: "US-CT",
-        value: 11.3
-      }, {
-        id: "US-DE",
-        value: 4.2
-      }, {
-        id: "US-FL",
-        value: 10.2
-      }, {
-        id: "US-GA",
-        value: 14.6
-      }, {
-        id: "US-HI",
-        value: 5.1
-      }, {
-        id: "US-ID",
-        value: 24.2
-      }, {
-        id: "US-IL",
-        value: 9.2
-      }, {
-        id: "US-IN",
-        value: 14.1
-      }, {
-        id: "US-IA",
-        value: 6.1
-      }, {
-        id: "US-KS",
-        value: 11
-      }, {
-        id: "US-KY",
-        value: 13.5
-      }, {
-        id: "US-LA",
-        value: 15.1
-      }, {
-        id: "US-ME",
-        value: 9.5
-      }, {
-        id: "US-MD",
-        value: 15
-      }, {
-        id: "US-MA",
-        value: 4.9
-      }, {
-        id: "US-MI",
-        value: 4.3
-      }, {
-        id: "US-MN",
-        value: 11.3
-      }, {
-        id: "US-MS",
-        value: 6.8
-      }, {
-        id: "US-MO",
-        value: 8.5
-      }, {
-        id: "US-MT",
-        value: 11.3
-      }, {
-        id: "US-NE",
-        value: 7.4
-      }, {
-        id: "US-NV",
-        value: 19.5
-      }, {
-        id: "US-NH",
-        value: 14.6
-      }, {
-        id: "US-NJ",
-        value: 5.8
-      }, {
-        id: "US-NM",
-        value: 40.5
-      }, {
-        id: "US-NY",
-        value: 3.3
-      }, {
-        id: "US-NC",
-        value: 11.1
-      }, {
-        id: "US-ND",
-        value: 9.5
-      }, {
-        id: "US-OH",
-        value: 11.4
-      }, {
-        id: "US-OK",
-        value: 12.3
-      }, {
-        id: "US-OR",
-        value: 11.4
-      }, {
-        id: "US-PA",
-        value: 15
-      }, {
-        id: "US-RI",
-        value: 3.8
-      }, {
-        id: "US-SC",
-        value: 11.6
-      }, {
-        id: "US-SD",
-        value: 11.5
-      }, {
-        id: "US-TN",
-        value: 11.3
-      }, {
-        id: "US-TX",
-        value: 12.8
-      }, {
-        id: "US-UT",
-        value: 12.9
-      }, {
-        id: "US-VT",
-        value: 6.4
-      }, {
-        id: "US-VA",
-        value: 30.1
-      }, {
-        id: "US-WA",
-        value: 8.6
-      }, {
-        id: "US-WV",
-        value: 9.4
-      }, {
-        id: "US-WI",
-        value: 7.8
-      }, {
-        id: "US-WY",
-        value: 50 //195.7
-      } ]
-    },
+        },
+        {
+            name: 'Washington',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[8.6, 6.48]]
 
-    areasSettings: {
-      autoZoom: false,
-       "balloonText": "[[value]] gun owners for every 1,000 people in [[title]]"
+        },{
+            name: 'Vermont',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[30.1, 7.4]]
 
-    },
+        },{
+            name: 'Virginia',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[6.4, 6.5]]
 
-    valueLegend: {
-      right: 150,
-      minValue: 0,
-      maxValue: 200,
-      showAsGradient: true
-    },
+        },{
+            name: 'Utah',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[12.9, 8.8]]
 
-    "export": {
-      "enabled": true
-    }
+        },{
+            name: 'Texas',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[12.8, 6.4]]
 
-  } );
+        },{
+            name: 'Tennesse',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[11.3, 8.9]]
 
-  //chart 4 beings
-  var map = AmCharts.makeChart( "chartdiv2", {
-    type: "map",
-    "theme": "light",
-    "titles": [{
-        "text": "State Suicide Rates"
-    }, {
-        "text": "Source: CDC",
-        "bold": false
-    }],
+        },{
+            name: 'South Dakota',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[11.5, 7.8]]
 
-    colorSteps: 50,
+        },{
+            name: 'South Carolina',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[11.6, 7.4]]
 
-    dataProvider: {
-      map: "usaLow",
-      areas: [ {
-        id: "US-AL",
-        value:15
-      }, {
-        id: "US-AK",
-        value: 1
-      }, {
-        id: "US-AZ",
-        value: 8
-      }, {
-        id: "US-AR",
-        value: 11
-      }, {
-        id: "US-CA",
-        value: 43
-      }, {
-        id: "US-CO",
-        value: 17
-      }, {
-        id: "US-CT",
-        value: 45
-      }, {
-        id: "US-DE",
-        value: 41
-      }, {
-        id: "US-FL",
-        value: 29
-      }, {
-        id: "US-GA",
-        value: 25
-      }, {
-        id: "US-HI",
-        value: 48
-      }, {
-        id: "US-ID",
-        value: 4
-      }, {
-        id: "US-IL",
-        value: 44
-      }, {
-        id: "US-IN",
-        value: 28
-      }, {
-        id: "US-IA",
-        value: 39
-      }, {
-        id: "US-KS",
-        value: 24
-      }, {
-        id: "US-KY",
-        value: 9
-      }, {
-        id: "US-LA",
-        value: 19
-      }, {
-        id: "US-ME",
-        value: 27
-      }, {
-        id: "US-MD",
-        value: 42
-      }, {
-        id: "US-MA",
-        value: 50
-      }, {
-        id: "US-MI",
-        value: 36
-      }, {
-        id: "US-MN",
-        value: 40
-      }, {
-        id: "US-MS",
-        value: 13
-      }, {
-        id: "US-MO",
-        value: 22
-      }, {
-        id: "US-MT",
-        value: 3
-      }, {
-        id: "US-NE",
-        value: 38
-      }, {
-        id: "US-NV",
-        value: 5
-      }, {
-        id: "US-NH",
-        value: 35
-      }, {
-        id: "US-NJ",
-        value: 49
-      }, {
-        id: "US-NM",
-        value: 7
-      }, {
-        id: "US-NY",
-        value: 47
-      }, {
-        id: "US-NC",
-        value: 26
-      }, {
-        id: "US-ND",
-        value: 23
-      }, {
-        id: "US-OH",
-        value: 37
-      }, {
-        id: "US-OK",
-        value: 10
-      }, {
-        id: "US-OR",
-        value: 15
-      }, {
-        id: "US-PA",
-        value: 34
-      }, {
-        id: "US-RI",
-        value: 46
-      }, {
-        id: "US-SC",
-        value: 20
-      }, {
-        id: "US-SD",
-        value: 18
-      }, {
-        id: "US-TN",
-        value: 12
-      }, {
-        id: "US-TX",
-        value: 32
-      }, {
-        id: "US-UT",
-        value: 14
-      }, {
-        id: "US-VT",
-        value: 21
-      }, {
-        id: "US-VA",
-        value: 30
-      }, {
-        id: "US-WA",
-        value: 31
-      }, {
-        id: "US-WV",
-        value: 6
-      }, {
-        id: "US-WI",
-        value: 33
-      }, {
-        id: "US-WY",
-        value: 2
-      } ]
-    },
+        },{
+            name: 'Rhode Island',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[3.8, 2.3]]
 
-    areasSettings: {
-      autoZoom: false,
-       "balloonText": "[[title]] ranks number [[value]] in suicides nationwide"
+        },{
+            name: 'Pennsylvania',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[15, 5.7]]
 
-    },
+        },{
+            name: 'Oregon',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[11.4, 8.3]]
 
-    valueLegend: {
-      right: 150,
-      minValue: 1,
-      maxValue: 50,
-      showAsGradient: true
-    },
+        },{
+            name: 'Oklahoma',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[12.3, 9.1]]
 
-    "export": {
-      "enabled": true
-    }
+        },{
+            name: 'Ohio',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[11.4, 5.5]]
 
-  } );
+        },{
+            name: 'New York',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[9.5, 2.1]]
+
+        },{
+            name: 'Nevada',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[11.3, 10.6]]
+
+        },{
+            name: 'New Mexico',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[3.3, 9.6]]
+
+        },{
+            name: 'New Jersey',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[40.5, 1.8]]
+
+        },{
+            name: 'Nebraska',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[14.6, 5.3]]
+
+        },{
+            name: 'North Dakota',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[19.5, 7.2]]
+
+        },{
+            name: 'North Carolina',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[7.4, 7]]
+
+        },{
+            name: 'Montana',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[11.3, 12.3]]
+
+        },{
+            name: 'Mississippi',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[8.5, 8.8]]
+
+        },{
+            name: 'Missouri',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[6.8, 7.3]]
+
+        },{
+            name: 'Minnesota',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[9.5, 5.1]]
+
+        },{
+            name: 'Michigan',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[4.3, 5.6]]
+
+        },{
+            name: 'Maine',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[4.9, 6.7]]
+
+        },{
+            name: 'Maryland',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[15, 4.1]]
+
+        },{
+            name: 'Massachusetts',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[8.7, 1.6]]
+
+        },{
+            name: 'Louisiana',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[15, 7.8]]
+
+        },{
+            name: 'Kentucky',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[13.5, 9]]
+
+        },{
+            name: 'Kansas',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[11, 7.1]]
+
+        },{
+            name: 'Indiana',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[6.1, 6.6]]
+
+        },{
+            name: 'Idaho',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[9.2, 10.8]]
+
+        },{
+            name: 'Iowa',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[24.2, 5.1]]
+
+        },{
+            name: 'Hawaii',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[5.1, 2]]
+
+        },{
+            name: 'Georgia',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[14.6, 7.11]]
+
+        },{
+            name: 'Florida',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[10.2, 6.5]]
+
+        },{
+            name: 'Connecticut',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[11.3, 2.6]]
+
+        },{
+            name: 'Colorado',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[12, 8.3]]
+
+        },{
+            name: 'California',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[7.6, 4]]
+
+        },{
+            name: 'Arizona',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[41.6, 9.1]]
+
+        },{
+            name: 'Arkansas',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[9.4, 8.9]]
+
+        },{
+            name: 'Alabama',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[15.2, 8.5]]
+
+        },{
+          name: 'Alaska',
+       color: 'rgba(223, 83, 83, .5)',
+       data: [[20, 14]]}
+   ]
+    });
+}
+
+
+
+
+function buildChart4(){
+    $('#chart4').highcharts({
+              chart: {
+                  type: 'column'
+              },
+              title: {
+                  text: 'Guns per 1,000 people'
+              },
+              subtitle: {
+                  text: 'Source: U.S. Census 2013'
+              },
+              xAxis: {
+                  categories: [
+                   ' '
+                  ],
+                  crosshair: true
+              },
+              yAxis: {
+                  min: 0,
+                  title: {
+                      text: 'Guns per 1,000 people'
+                  }
+              },
+              tooltip: {
+                  headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                  pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                      '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                  footerFormat: '</table>',
+                  shared: true,
+                  useHTML: true
+              },
+              plotOptions: {
+                  column: {
+                      pointPadding: 0.2,
+                      borderWidth: 0
+                  }
+              },
+              series: [{
+                  name: 'National Average',
+                  data: [71.5]
+
+              }, {
+                  name: 'Wyoming',
+                  data: [195.7]
+
+              },
+              {
+                  name: 'Delaware',
+                  data: [[66.4]]
+
+              }]
+
+});
+}
 
 </script>
 

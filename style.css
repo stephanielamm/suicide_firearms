@@ -19,6 +19,24 @@ display: none
 
 }
 
+
+
+.intro .intro-text .headline {
+  font-size: 3.5em;
+  font-family: "Open Sans";
+  font-weight: 600;
+  color: #222222;
+}
+
 .byline {
-  
+  font-size: 1.5em;
+  font-family: "Playfair Display";
+  font-weight: 700;
+  color: #222222;
+}
+
+
+#box1 {
+  background-color: white;
+
 }

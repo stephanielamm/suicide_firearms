@@ -11,6 +11,9 @@
 
 <link rel="stylesheet" type="text/css" href="style.css">
 
+<link href='https://www.google.com/fonts#UsePlace:use/Collection:Playfair+Display:700italic,900italic' rel='stylesheet' type='text/css'>
+<link href='https://www.google.com/fonts#UsePlace:use/Collection:Oswald:400,700' rel='stylesheet' type='text/css'>
+<link href='https://www.google.com/fonts#UsePlace:use/Collection:Open+Sans:400,600' rel='stylesheet' type='text/css'>
 
 </head>
 
@@ -22,7 +25,7 @@
 
   <nav class="navbar navbar-default navbar-fixed-top">
   <a href="#"><img src="vox.png" alt="vox header" style="height: 10%;"></a>
-  <a href="#"><img src="search.png" atl="search and menu" style="height: 10%; float: right;">
+  <a href="#"><img src="search.png" atl="search and menu" style="height: 10%; float: right; padding-top: 10px;">
   </a>
 </nav>
 
@@ -35,13 +38,17 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-6" id="title">
-      <p>Gun violence and suicide in 4 charts</p>
+    <div class="col-xs-12">
+       <span class="headline">
+      <h1>Gun violence and suicide in 4 charts</h1>
+    </span>
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-6" id="byline">
-      <p>by Stephanie Lamm on March 28, 2016</p>
+    <div class="col-xs-6">
+      <span class="byline">
+      <p>by <a href="#">Stephanie Lamm</a> on March 28, 2016</p>
+    </span>
     </div>
   </div>
 
@@ -50,13 +57,19 @@
 
 
 
-
+<div class="row">
+  <div class="col-xs-12 box1">
   <div id="chart1" style="min-width: 310px; max-width: 800px; height: 400px; margin: 20px auto"></div>
-  <div id="chart2" style="min-width: 310px; max-width: 800px; height: 400px; margin: 20px;"></div>
+</div>
+</div>
+
+  <div id="chart2" style="min-width: 310px; max-width: 800px; height: 400px; margin: 20px auto;"></div>
 
 
 <div id="chart3" style="min-width: 310px; height:600px; max-width: 800px; margin: 0 auto"></div>
-<div id="chart4" style="min-width: 310px; height:600px; max-width: 800px; margin: 0 auto"></div>
+</br></br>
+
+<div id="chart4" style="min-width: 310px; height:400px; max-width: 800px; margin: 0 auto"></div>
 
 <script>
 // A $( document ).ready() block.

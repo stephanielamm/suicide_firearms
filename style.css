@@ -21,14 +21,14 @@ display: none
 
 
 
-.intro .intro-text .headline {
+.h1 {
   font-size: 3.5em;
   font-family: "Open Sans";
   font-weight: 600;
   color: #222222;
 }
 
-.byline {
+.p {
   font-size: 1.5em;
   font-family: "Playfair Display";
   font-weight: 700;
@@ -36,7 +36,7 @@ display: none
 }
 
 
-#box1 {
+#box {
   background-color: white;
 
 }

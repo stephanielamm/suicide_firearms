@@ -23,7 +23,7 @@
   <script src="http://code.highcharts.com/maps/modules/map.js"></script>
   <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
 <script src="https://www.amcharts.com/lib/3/maps/js/usaLow.js"></script>
-<script src="https://www.amcharts.com/lib/3/themes/none.js"></script>
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
 
 
@@ -31,11 +31,9 @@
   <div id="chart2" style="min-width: 310px; max-width: 800px; height: 400px; margin: 20px;"></div>
 
 
-<div> Gun Ownership per 1,000 Residents</div>
   <div id="chartdiv" style= "width: 50%;
 	height: 500px; float: left;"></div>
 
-  <div>Suicide Rate</di>
   <div id="chartdiv2" style= "width: 50%;
 	height: 500px; float: right;"></div>
 
@@ -222,6 +220,12 @@ function buildChart1(){
   var map = AmCharts.makeChart( "chartdiv", {
     type: "map",
     "theme": "light",
+    "titles": [{
+        "text": "Gun Ownership"
+    }, {
+        "text": "Source: U.S. Census 2013",
+        "bold": false
+    }],
 
     colorSteps: 400,
 
@@ -403,6 +407,12 @@ function buildChart1(){
   var map = AmCharts.makeChart( "chartdiv2", {
     type: "map",
     "theme": "light",
+    "titles": [{
+        "text": "State Suicide Rates"
+    }, {
+        "text": "Source: CDC",
+        "bold": false
+    }],
 
     colorSteps: 50,
 

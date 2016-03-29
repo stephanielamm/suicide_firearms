@@ -1,0 +1,10 @@
+#chartdiv {
+    width   : 100%;
+    height  : 500px;
+}
+
+.amcharts-balloon-bg {
+  stroke: #80B56D;
+  stroke-dasharray: 5,5;
+  fill: #8BFABB;
+}

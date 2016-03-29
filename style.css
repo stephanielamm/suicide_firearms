@@ -1,4 +1,12 @@
+@import url('https://www.google.com/fonts#UsePlace:use/Collection:Playfair+Display:700italic,900italic');
+@import url('https://www.google.com/fonts#UsePlace:use/Collection:Oswald:400,700');
+@import url('https://www.google.com/fonts#UsePlace:use/Collection:Open+Sans:400,600');
+
 
 #highcharts-8 .highcharts-legend{
 display: none
+}
+
+.navbar {
+  background-color: white;
 }
